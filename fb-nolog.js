@@ -10,19 +10,43 @@
 // @homepageURL https://github.com/lidel/userscripts
 // @grant       GM_addStyle
 // ==/UserScript==
- 
-var css = "#headerArea div#u_0_0, #headerArea div#u_0_1, #headerArea div#u_0_3, #dialog_0.pop_dialog, #pagelet_loggedout_sign_up, #pagelet_bluebar, #pagelet_growth_expanding_cta, UIPage_LoggedOut { display: none !important; }";
- 
-if (typeof GM_addStyle != "undefined") {
-    GM_addStyle(css);
-} else if (typeof addStyle != "undefined") {
-    addStyle(css);
+ // Facebook no-login browser
+
+
+
+
+
+// Select the div with the aria-label "Close"
+var closeDiv = document.querySelector('div[aria-label="Close"]');
+
+// Check if the div exists
+if (closeDiv) {
+    // Simulate a click on the div
+    closeDiv.click();
+
+    // Wait for 1 second (1000 milliseconds)
+    setTimeout(function() {
+       
+
+
+
+	// Hide lower banner
+	// Select the div with the attribute data-nosnippet
+	var div = document.querySelector('div[data-nosnippet]');
+
+	// Check if the div exists
+	if (div) {
+	    // Set the display property to none
+	    div.style.display = 'none';
+	}
+
+
+
+
+
+
+    }, 1000);
 } else {
-    var heads = document.getElementsByTagName("head");
-    if (heads.length > 0) {
-        var node = document.createElement("style");
-        node.type = "text/css";
-        node.appendChild(document.createTextNode(css));
-        heads[0].appendChild(node);
-    }
+    // If the div is not found, log a message or handle the case as needed
+    console.log('Close button not found.');
 }
